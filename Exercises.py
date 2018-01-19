@@ -43,4 +43,68 @@ def ex5():
     print(sorted(second))
     print(set(sorted(list(filter(lambda val: val in second,first)))))
 
-ex5()
+def ex6():
+    palindrome = input("Enter a string: ")
+    print(palindrome,palindrome[::-1])
+    if palindrome == ''.join((reversed(palindrome))):
+        print("Is a palindrome")
+    else:
+        print("Is NOT a palindrome!!")
+
+def ex7():
+    import random
+    a = [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+    a = []
+    for x in range(random.randint(90,100)):
+        a.append(random.randint(0,1000))
+
+    print(a[::2])
+    print(list(filter(lambda x: x % 2 == 0,a)))
+
+def ex8():
+    first = ""
+    second = ""
+    first_points = 0
+    second_points = 0
+    print("Use r for rock, s for scissor, p for paper and q for quit.")
+    while first !="q" or second != "q":
+        first = input("First player, enter your choice (r,s,p,q):")
+        second = input("Second player, enter your choice (r,s,p,q):")
+        if first == "r":
+            if second == "r":
+                # even
+                print("Even")
+            elif second == "s":
+                # second win
+                print("Second win")
+                second_points+=1
+            elif second == "p":
+                # first win
+                print("First win")
+                first_points+=1
+        if first == "s":
+            if second == "r":
+                # second win
+                print("Second win")
+                second_points+=1
+            elif second == "s":
+                # even
+                print("Even")
+            elif second == "p":
+                # first win
+                print("First win")
+                first_points+=1
+        if first == "p":
+            if second == "r":
+                # first win
+                print("First win")
+                first_points+=1
+            elif second == "s":
+                # second win
+                print("Second win")
+                second_points+=1
+            elif second == "p":
+                # even
+                print("Even")
+        print("First {}, second {}".format(first_points,second_points))
+ex8()
