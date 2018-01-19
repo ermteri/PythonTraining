@@ -1,4 +1,4 @@
-# From http://www.practicepython.org/
+# Exercises taken from http://www.practicepython.org/
 def ex1():
     import datetime
     now = datetime.date.today().year
