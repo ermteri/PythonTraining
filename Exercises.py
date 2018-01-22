@@ -147,25 +147,9 @@ def ex10():
     print(list(c))
     print (list(d))
 
-def ex11(max):
-    #max = int(input("Enter an integer:"))
-    #print(list(range(2,number)))
-    #print(number%2)
-    #result = [x for x in range(2,number) if number % x == 0]
-    #print(list(result))
-    #if len(result) > 0:
-    result = []
-    for number in range(1,max):
-        if len([x for x in range(2,number) if number % x == 0]) > 0 or number == 1:
-            #print("Prime-number")
-            #print("Not a prime number")
-            x=1
-        else:
-            result.append(number)
-    return result
-    #print("Number of primes:", count)
 def ex11_ets(number):
     import math
+    start = time.time()
     #number = int(input("Enter an integer:"))
     #Step 1 and 2
     nums = [x for x in range(2,number+1) if x%2!=0 or x == 2]
@@ -181,20 +165,44 @@ def ex11_ets(number):
         next = nums[i]
         #print(next)
     # step 6
+    print(time.time() - start)
+    print(len(nums),list(nums))
     return nums
-    #print(list(nums))
 
+def ex11():
+    max = int(input("Enter an integer:"))
+    start = time.time()
+    #max = int(input("Enter an integer:"))
+    #print(list(range(2,number)))
+    #print(number%2)
+    #result = [x for x in range(2,number) if number % x == 0]
+    #print(list(result))
+    #if len(result) > 0:
+    result = []
+    for number in range(1,max):
+        if len([x for x in range(2,number) if number % x == 0]) > 0 or number == 1:
+            #print("Prime-number")
+            #print("Not a prime number")
+            x=1
+        else:
+            result.append(number)
+    print(time.time() - start)
+    print(len(result),list(result))
+    result2 = ex11_ets(max)
+    print(result == result2)
+
+def ex12():
+    def get_first_last(alist):
+        return [x for ind,x in enumerate(alist) if ind== 0 or ind==len(alist)-1]
+    a= [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73]
+    print(list(get_first_last(a)))
+
+def ex13():
+    count = int(input("Enter number of fibonacci numbers:"))
+    result = [1,1]
+    while len(result) < count:
+        result.append(result[len(result)-1] + result[len(result)-2])
+    print(list(result))
 import time
-number = int(input("Enter an integer:"))
-start = time.time()
-result1 = ex11(number)
-print(time.time() - start)
-print(list(result1))
-print(len(result1))
-start = time.time()
-result2 = ex11_ets(number)
-print(time.time() - start)
-print(list(result2))
-print("Len:",len(result2))
-print(result1 == result2)
+ex13()
 
