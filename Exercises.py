@@ -405,6 +405,36 @@ def ex27():
             print("Illegal pos")
         if print_board():
             break
-ex27()
+
+
+def ex34():
+    import json
+    FILENAME = "birthdays.json"
+    NAME = "name"
+    BIRTHDAY = "birthday"
+
+    def store_new_person(res):
+        print(res)
+        with open(FILENAME,"w")as bd:
+            bd.write(json.dumps(res,indent=2,sort_keys=True))
+
+    with open(FILENAME,'r') as bd:
+        result = json.loads(bd.read())
+    #print(result)
+
+    result.append({"name":"Mattias","birthday":"930725"})
+    #print(result)
+    #print(json.dumps(result, indent=2, sort_keys=True))
+    name = str(input("Enter person to lookup:"))
+    found = False
+    for person in result:
+        if person[NAME] == name:
+            print(person[BIRTHDAY])
+            found = True
+    if not found:
+        birthday = str(input("Not, found. Enter birthday:"))
+        result.append({NAME: name, BIRTHDAY: birthday})
+        store_new_person(result)
+ex34()
 
 
