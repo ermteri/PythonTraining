@@ -203,6 +203,48 @@ def ex13():
     while len(result) < count:
         result.append(result[len(result)-1] + result[len(result)-2])
     print(list(result))
-import time
-ex13()
+
+def ex14():
+    def  clean_list(alist):
+        return list(set(alist))
+    a = [1, 1, 2, 3, 5, 2, 13, 21, 13, 3, 89]
+    print(list(clean_list(a)))
+
+def ex15():
+    def yoda(message):
+        result = message.split()
+        return result[::-1]
+    sentence = str(input("Enter a sentence"))
+    print(" ".join(yoda(sentence)))
+
+def ex16():
+    import string
+    import random
+    # 1. at least one from each group
+    # 2. Min-len 4, max any
+    pwlen = 10
+    source = list()
+    source.append(string.ascii_uppercase)
+    source.append(string.ascii_lowercase)
+    source.append(string.punctuation)
+    source.append(string.digits)
+    print(list(source))
+    pw = ""
+    for x in range(pwlen):
+        pw += "".join(random.sample(source[x%4],1))
+        #print(pw)
+
+    print(pw)
+def ex17():
+    import requests
+    from bs4 import BeautifulSoup
+    url = "http://www.nytimes.com/"
+    r = requests.get(url)
+    r_html = r.text
+    soup = BeautifulSoup(r_html,"html_parser")
+    title = soup.find('span','articletitle')
+    print(r_html)
+
+ex17()
+
 
