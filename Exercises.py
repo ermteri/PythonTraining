@@ -149,6 +149,7 @@ def ex10():
 
 def ex11_ets(number):
     import math
+    import time
     start = time.time()
     #number = int(input("Enter an integer:"))
     #Step 1 and 2
@@ -170,6 +171,7 @@ def ex11_ets(number):
     return nums
 
 def ex11():
+    import time
     max = int(input("Enter an integer:"))
     start = time.time()
     #max = int(input("Enter an integer:"))
@@ -257,20 +259,143 @@ def ex17():
 
 def ex18():
     import random
-    def checkCowsBulls(n):
-        print(n)
+    def check_cows_bulls(n):
+        cow = 0
+        bull = 0
+        for ind,x in enumerate(n):
+            if x == number[ind]:
+                cow+=1
+            elif x in number:
+                bull+=1
+        print("C:", cow, "B:", bull)
+
     number = "{0:0>4}".format(random.randint(0,9999))
+    print("Secret:",number)
     count = 0
     while True:
         guess = str(input("Enter number: "))
         count += 1
         if guess == number:
+            print("Correct!")
             break
+        else:
+            check_cows_bulls(guess)
     print("You guessed",count,"number of time(s)")
 
+def ex18a():
+    import random
+    def compare_numbers(number, user_guess):
+        cowbull = [0, 0]  # cows, then bulls
+        for i in range(len(number)):
+            if number[i] == user_guess[i]:
+                cowbull[1] += 1
+            else:
+                cowbull[0] += 1
+        return cowbull
+
+    if __name__ == "__main__":
+        playing = True  # gotta play the game
+        number = str(random.randint(0, 9999))  # random 4 digit number
+        print(number)
+        guesses = 0
+        print("Let's play a game of Cowbull!")  # explanation
+        print("I will generate a number, and you have to guess the numbers one digit at a time.")
+        print("For every number in the wrong place, you get a cow. For every one in the right place, you get a bull.")
+        print("The game ends when you get 4 bulls!")
+        print("Type exit at any prompt to exit.")
+        while playing:
+            user_guess = input("Give me your best guess!")
+            if user_guess == "exit":
+                break
+            cowbullcount = compare_numbers(number, user_guess)
+            guesses += 1
+            print("You have " + str(cowbullcount[0]) + " cows, and " + str(cowbullcount[1]) + " bulls.")
+            if cowbullcount[1] == 4:
+                playing = False
+                print("You win the game after " + str(guesses) + "! The number was " + str(number))
+                break  # redundant exit
+            else:
+                print("Your guess isn't quite right, try again.")
+
+def ex21():
+    with open('kalle.txt','r') as my_file:
+        # my_file.write("Hello world again\n")
+        print(my_file.read())
+    print("Ready!")
+
+def ex22():
+    with open("Exercises.py",'r') as myfile:
+        content = myfile.read().split()
+        result = {}
+        for word in content:
+            if word in result.keys():
+                result[word]+=1
+            else:
+                result[word] = 1
+        for k in sorted(result):
+            print(result[k],k)
 
 
+def ex23():
+    pn = []
+    hn = []
+    with open("primenumbers.txt",'r') as primes:
+        pn = list(primes.read().split())
+    with open("happynumbers.txt", 'r') as happy:
+        hn = list(happy.read().split())
+    res = [x for x in hn if x in pn]
+    print(res)
 
-ex18()
+def ex27():
+    game = [['-','-','-'],
+            ['-','-','-'],
+            ['-','-','-']]
+
+    def check_winner():
+        for row in game:
+            if len(set(row)) == 1:
+                if row[0] != '-':
+                    print(row[0],"win!")
+                    return True
+        for col in zip(*game):
+            if len(set([i for i in col])) == 1:
+                if col[0] != '-':
+                    print(col[0],"win!")
+                    return True
+        if len (set([game[0][0],game[1][1],game[2][2]])) == 1 and game[0][0] != '-':
+            print(game[0][0],"win!")
+            return True
+        if len (set([game[0][2],game[1][1],game[2][0]])) == 1 and game[0][2] != '-':
+            print(game[0][2],"win!")
+            return True
+        return False
+
+    def print_board():
+        for x in game:
+            print(x[0], x[1], x[2])
+        if check_winner():
+            return True
+        else:
+            return False
+
+    def get_input(user):
+        answer = str(input(user + "(x,y): "))
+        pos = list(answer.split(","))
+        if game[int(pos[0])][int(pos[1])] == '-':
+            game[int(pos[0])][int(pos[1])] = user
+            return False
+        else:
+            return True
+    print_board()
+    while True:
+        while get_input('X'):
+            print("Illegal pos")
+        if print_board():
+            break
+        while get_input('O'):
+            print("Illegal pos")
+        if print_board():
+            break
+ex27()
 
 
