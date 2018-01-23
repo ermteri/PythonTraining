@@ -371,12 +371,21 @@ def ex27():
         return False
 
     def print_board():
-        for x in game:
-            print(x[0], x[1], x[2])
+        space_left = False
+        for row in game:
+            for col in row:
+                print(col," ",end='')
+                if col == '-':
+                    space_left = True
+            print()
         if check_winner():
+            return True
+        elif not space_left:
+            print("No winner!")
             return True
         else:
             return False
+
 
     def get_input(user):
         answer = str(input(user + "(x,y): "))
