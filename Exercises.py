@@ -235,16 +235,42 @@ def ex16():
         #print(pw)
 
     print(pw)
+
+
 def ex17():
     import requests
     from bs4 import BeautifulSoup
     url = "http://www.nytimes.com/"
     r = requests.get(url)
     r_html = r.text
-    soup = BeautifulSoup(r_html,"html_parser")
-    title = soup.find('span','articletitle')
-    print(r_html)
+    soup = BeautifulSoup(r_html,"html.parser")
+    result = soup.find_all('a')
+    for link in result:
+        print(link.get('href'),link.contents)
 
-ex17()
+    for story_heading in soup.find_all(class_="story-heading"):
+        if story_heading.a:
+            print(story_heading.a.text.replace("\n", " ").strip())
+        else:
+            print(story_heading.contents[0].strip())
+
+
+def ex18():
+    import random
+    def checkCowsBulls(n):
+        print(n)
+    number = "{0:0>4}".format(random.randint(0,9999))
+    count = 0
+    while True:
+        guess = str(input("Enter number: "))
+        count += 1
+        if guess == number:
+            break
+    print("You guessed",count,"number of time(s)")
+
+
+
+
+ex18()
 
 
