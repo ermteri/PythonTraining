@@ -420,16 +420,17 @@ def ex34():
 
     with open(FILENAME,'r') as bd:
         result = json.loads(bd.read())
-    #print(result)
 
     result.append({"name":"Mattias","birthday":"930725"})
-    #print(result)
-    #print(json.dumps(result, indent=2, sort_keys=True))
+    print("before",result)
+    result.append([{"name":"LiQi","birthday":"920914"},{"name":"Ding Fung","birthday":"670430"}])
+    print("after",result)
+
     name = str(input("Enter person to lookup:"))
     found = False
     for person in result:
         if person[NAME] == name:
-            print(person[BIRTHDAY])
+            print("Birthday:",person[BIRTHDAY])
             found = True
     if not found:
         birthday = str(input("Not, found. Enter birthday:"))
