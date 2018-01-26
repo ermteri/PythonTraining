@@ -8,8 +8,10 @@ pipeline {
         }
         stage("Checkout") {
             steps {
+              dir('python-training') {
                 git 'https://github.com/ermteri/PythonTraining.git'
-                echo "Checkout done"
+              }
+              echo "Checkout done"
             }
         }
         stage("Test") {
