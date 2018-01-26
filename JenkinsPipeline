@@ -1,0 +1,23 @@
+pipeline {
+    stages {
+        stage("Hello") {
+            steps {
+                echo "Hello from Torsten"
+            }
+        }
+        stage("Checkout") {
+            steps {
+                git 'https://github.com/ermteri/PythonTraining.git'
+                echo "Checkout done"
+            }
+        }
+        stage("Test") {
+            steps {
+                dir('python-training') {
+                    bat "C:/Users/Torsten/python/python.exe web_crawler.py"
+                }
+                echo "Done!"
+            }
+        }
+    }
+}
