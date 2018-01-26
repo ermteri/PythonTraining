@@ -1,4 +1,5 @@
 pipeline {
+    agent { label 'localhost'}
     stages {
         stage("Hello") {
             steps {
