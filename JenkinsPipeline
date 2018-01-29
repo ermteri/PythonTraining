@@ -8,17 +8,14 @@ pipeline {
         }
         stage("Checkout") {
             steps {
-              dir('python-training') {
                 git 'https://github.com/ermteri/PythonTraining.git'
-              }
-              echo "Checkout done"
+                echo "Checkout done"
             }
         }
         stage("Test") {
             steps {
-                dir('python-training') {
-                    bat "C:/Users/Torsten/python/python.exe web_crawler.py"
-                }
+                bat "C:/Users/Torsten/python/python.exe web_crawler.py"
+                archiveArtifacts artifacts: '*.py', fingerprint: true
                 echo "Done!"
             }
         }
