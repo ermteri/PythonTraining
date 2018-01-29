@@ -31,8 +31,8 @@ def find_first_link(url):
     return urllib.parse.urljoin('https://en.wikipedia.org/', first_relative_link )
 
 
-#start_url = 'https://en.wikipedia.org/wiki/Ludwig_van_Beethoven'
-start_url = 'https://en.wikipedia.org/wiki/Special:Random'
+start_url = 'https://en.wikipedia.org/wiki/Ludwig_van_Beethoven'
+#start_url = 'https://en.wikipedia.org/wiki/Special:Random'
 #start_url = "https://en.wikipedia.org/wiki/Russian_language"
 target_url = 'https://en.wikipedia.org/wiki/Philosophy'
 article_chain = [start_url]
