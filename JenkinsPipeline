@@ -14,7 +14,8 @@ pipeline {
         }
         stage("Test") {
             steps {
-                bat "C:/Users/Torsten/python/python.exe web_crawler_org.py"
+                //bat "C:/Users/Torsten/python/python.exe web_crawler_org.py"
+                sh 'python3 web_crawler_org.py'
                 archiveArtifacts artifacts: '*.py', fingerprint: true
                 echo "Done!"
             }
