@@ -20,7 +20,7 @@ def upper_case_service(word):
 def circle_area():
     d=dict(request.query)
     r=int(dict(request.query).get('radius'))
-    return str(3.14*r**2.0)
+    return dict(radius=str(r),something=dict(area="r*pi^2"),listan=[1,2,3],area=str(3.14*r**2.0))
     
 if __name__ == "__main__":
     run(host='localhost',port=8080)
