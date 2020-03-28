@@ -5,6 +5,7 @@ import time
 
 MAXJUMPS = 50
 
+
 def continue_crawl(history, target):
     if history[-1] == target:
         print("Target found!")
@@ -17,6 +18,7 @@ def continue_crawl(history, target):
         return False
     else:
         return True
+
 
 def find_first_link(url):
     print("Checking:",url)
@@ -39,7 +41,7 @@ def find_first_link(url):
 
 # start_url = 'https://en.wikipedia.org/wiki/Ludwig_van_Beethoven'
 start_url = 'https://en.wikipedia.org/wiki/Special:Random'
-#start_url = "https://en.wikipedia.org/wiki/Russian_language"
+# start_url = "https://en.wikipedia.org/wiki/Russian_language"
 target_url = 'https://en.wikipedia.org/wiki/Philosophy'
 article_chain = [start_url]
 print(start_url)
