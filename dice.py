@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import matplotlib.pyplot as plt
 import random as r
 
@@ -9,11 +10,12 @@ for x in range(100000):
         result[x] = result[x] + 1
     else:
         result[x] = 0
-x = []
-y = []
+x = list()
+y = list()
 for k in result:
     x.append(k)
     y.append(result[k])
 ax.plot(x, y)
 ax.set_ylim(0, max(y) + 500)
+# plt.savefig("kalle.pdf")
 plt.show()
